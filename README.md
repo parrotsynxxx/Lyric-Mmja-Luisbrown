@@ -1,5 +1,3 @@
-# Lyric-Mmja-Luisbrown
-
 🎵 Terminal Visual Song
 Un proyecto visual y musical para terminal hecho en Python
 📖 Descripción general
@@ -167,3 +165,143 @@ Este proyecto puede compartirse, modificarse y distribuirse libremente bajo una 
 Terminal Visual Song transforma una simple terminal en un escenario animado.
 Cada línea cobra vida, cada color tiene ritmo, y cada segundo de espera construye una experiencia visual y emocional.
 Es un ejemplo de cómo la programación puede ser también arte. 
+
+
+Script:
+
+import time
+import sys
+
+class Color:
+    ROJO = '\033[38;5;196m'
+    MAGENTA = '\033[38;5;201m'
+    CYAN = '\033[38;5;51m'
+    VERDE = '\033[38;5;46m'
+    AMARILLO = '\033[38;5;226m'
+    NARANJA = '\033[38;5;208m'
+    MORADO = '\033[38;5;93m'
+    AZUL = '\033[38;5;33m'
+    RESET = '\033[0m'
+    BOLD = '\033[1m'
+    DIM = '\033[2m'
+
+def clear():
+    print('\033[2J\033[H', end='')
+
+def type_effect(text, speed=0.04, color=''):
+    sys.stdout.write(color + Color.BOLD)
+    for char in text:
+        sys.stdout.write(char)
+        sys.stdout.flush()
+        time.sleep(speed)
+    sys.stdout.write(Color.RESET)
+
+def print_line(text, speed=0.04, color='', end='\n'):
+    type_effect(text, speed, color)
+    sys.stdout.write(end)
+    sys.stdout.flush()
+
+def gradient_line(char, length, speed=0.005):
+    colors = [Color.CYAN, Color.AZUL, Color.MORADO, Color.MAGENTA, Color.ROJO]
+    for i in range(length):
+        color = colors[i % len(colors)]
+        sys.stdout.write(color + Color.BOLD + char)
+        sys.stdout.flush()
+        time.sleep(speed)
+    print(Color.RESET)
+
+def banner():
+    clear()
+    banner_text = """
+    ███╗   ███╗███╗   ███╗     ██╗ █████╗ 
+    ████╗ ████║████╗ ████║     ██║██╔══██╗
+    ██╔████╔██║██╔████╔██║     ██║███████║
+    ██║╚██╔╝██║██║╚██╔╝██║██   ██║██╔══██║
+    ██║ ╚═╝ ██║██║ ╚═╝ ██║╚█████╔╝██║  ██║
+    ╚═╝     ╚═╝╚═╝     ╚═╝ ╚════╝ ╚═╝  ╚═╝
+    """
+    for line in banner_text.split('\n'):
+        print_line(line, 0.001, Color.CYAN)
+    time.sleep(0.3)
+
+def main():
+    banner()
+    
+    print()
+    gradient_line('═', 70)
+    print()
+    
+    print_line('CANCION FAVORITA DE "coloca un nombre" ', 0.05, Color.AMARILLO)
+    
+    print()
+    gradient_line('═', 70)
+    print()
+    time.sleep(0.5)
+    
+    print_line('M M J A', 0.12, Color.ROJO)
+    print()
+    time.sleep(0.8)
+    
+    gradient_line('━', 70, 0.008)
+    print()
+    time.sleep(0.4)
+    
+    print_line('LUIS BROWN', 0.08, Color.VERDE)
+    print()
+    time.sleep(0.6)
+    
+    # Verso completo con ritmo
+    print_line('Ella quiere, aja, que yo la choque, aja', 0.045, Color.CYAN)
+    time.sleep(0.35)
+    
+    print_line('Que le de ZaZa, aja, tambien Percocet, aja', 0.045, Color.MAGENTA)
+    time.sleep(0.35)
+    
+    print_line('Siempre me tira, si, aja, si dan la 12', 0.045, Color.VERDE)
+    time.sleep(0.35)
+    
+    print_line('Quiere sentirlo, que esta harta de ese hombre', 0.045, Color.NARANJA)
+    time.sleep(0.35)
+    
+    print_line('Viendo mi video, ella se pajea a mi nombre', 0.045, Color.AMARILLO)
+    time.sleep(0.35)
+    
+    print_line('El dizque la prende, quiero verlo, en donde', 0.045, Color.MORADO)
+    time.sleep(0.35)
+    
+    print_line("No son malo', na', si salimo' se esconden", 0.045, Color.AZUL)
+    time.sleep(0.35)
+    
+    print_line('Ella vive tirando a uno que no le responde', 0.045, Color.ROJO)
+    time.sleep(1)
+    
+    print()
+    gradient_line('━', 70, 0.008)
+    print()
+    time.sleep(0.5)
+    
+    gradient_line('═', 70)
+    print()
+    
+    sys.stdout.write(' ' * 18)
+    colors = [Color.CYAN, Color.MAGENTA, Color.AMARILLO, Color.VERDE, Color.ROJO]
+    credit_text = 'By: Parrot Firewall SYN'
+    for i, char in enumerate(credit_text):
+        color = colors[i % len(colors)]
+        sys.stdout.write(color + Color.BOLD + char)
+        sys.stdout.flush()
+        time.sleep(0.06)
+    print(Color.RESET)
+    
+    print()
+    gradient_line('═', 70)
+    print()
+    
+    time.sleep(0.3)
+
+if __name__ == '__main__':
+    try:
+        main()
+    except KeyboardInterrupt:
+        print(f'\n{Color.ROJO}{Color.BOLD}Saliendo...{Color.RESET}\n')
+        sys.exit(0)
