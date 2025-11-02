@@ -167,7 +167,7 @@ Cada línea cobra vida, cada color tiene ritmo, y cada segundo de espera constru
 Es un ejemplo de cómo la programación puede ser también arte. 
 
 
-Script:
+CODIGO PYTHON A EJECUTAR:
 
 import time
 import sys
